@@ -30,8 +30,7 @@ const DataTable = () => {
         getMembers();
     }, []);
     const membersData = useMemo( ()=> {
-        let computeMembers =  members
-        return computeMembers;
+        return members;
 
     }, [members])
     return (
@@ -50,16 +49,18 @@ const DataTable = () => {
 
                         <table className="table table-striped">
                           <TableHeader headers={headers}/>
+                            {/*{headers.map(head => (<TableSearch key={head.field}/>))}*/}
+                          {/*<TableSearch/>*/}
                             <tbody>
-                            {membersData.map( member => (
-                                <tr>
-                                    <th scope="row">{member.crewId}</th>
-                                    <td>{member.id}</td>
-                                    <td>{member.image}</td>
-                                    <td>{member.name}</td>
-                                    <td>{member.userId}</td>
-                                </tr>
-                            ))}
+                            {membersData.map( member => {
+                                return ( <tr>
+                                            <td>{member.crewId}</td>
+                                            <td>{member.id}</td>
+                                            <td>{member.image}</td>
+                                            <td>{member.name}</td>
+                                            <td>{member.userId}</td>
+                                </tr>)
+                            })}
                             </tbody>
                         </table>
                     </div>
