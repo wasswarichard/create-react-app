@@ -1,13 +1,21 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useMemo, useState} from "react";
 import TablePagination from "./TablePagination/TablePagination";
 import TableSearch from "./TableSearch/TableSearch";
 import TableHeader from "./TableHeader/TableHeader";
 import config from "../../Helpers/config.json"
 import useFullPageLoader from "../../hooks/useFullPageLoader/useFullPageLoader";
+// import "../../components/Sidebar/style.css"
 
 const DataTable = () => {
-    const [Members, setMembers] = useState([]);
-    const [loader, showLoader, hideLoader] = useFullPageLoader(false);
+    const [members, setMembers] = useState([]);
+    const [loader, showLoader, hideLoader] = useFullPageLoader();
+    const headers = [
+        {name: "crewId", field: "crewId"},
+        {name: "id", field: "id"},
+        {name: "image", field: "image"},
+        {name: "name", field: "name"},
+        {name: "userId", field: "userId"}
+    ]
     useEffect(() => {
         const getMembers = () => {
             showLoader();
@@ -20,7 +28,12 @@ const DataTable = () => {
                 })
         }
         getMembers();
-    })
+    }, []);
+    const membersData = useMemo( ()=> {
+        let computeMembers =  members
+        return computeMembers;
+
+    }, [members])
     return (
         <>
             {/*<Header title="Building a data table in react">*/}
@@ -36,26 +49,17 @@ const DataTable = () => {
                         </div>
 
                         <table className="table table-striped">
-                          <TableHeader></TableHeader>
+                          <TableHeader headers={headers}/>
                             <tbody>
+                            {membersData.map( member => (
                                 <tr>
-                                    <th scope="row">1</th>
-                                    <td>Test Name</td>
-                                    <td>test@test.com</td>
-                                    <td>Test body</td>
+                                    <th scope="row">{member.crewId}</th>
+                                    <td>{member.id}</td>
+                                    <td>{member.image}</td>
+                                    <td>{member.name}</td>
+                                    <td>{member.userId}</td>
                                 </tr>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Test Name</td>
-                                    <td>test@test.com</td>
-                                    <td>Test body</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Test Name</td>
-                                    <td>test@test.com</td>
-                                    <td>Test body</td>
-                                </tr>
+                            ))}
                             </tbody>
                         </table>
                     </div>

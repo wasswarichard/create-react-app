@@ -22,24 +22,6 @@ const Sidebar = () => {
                 </ul>
             </div>
         </div>
-
-        // <div className="sidebar">
-        //     <ul>
-        //         {sidebarData.map((val, key) => {
-        //             return (
-        //                 <li key={key} onClick={()=> {window.location.pathname = val.link}}>
-        //                     <a href=""><span className={val.iconClass}></span><span>{val.title}</span></a>
-        //                 </li>
-        //                 // <li key={key} onClick={()=> {window.location.pathname = val.link}}>
-        //                 //     {" "}
-        //                 //     <div>{val.iconClass}</div> {" "}
-        //                 //     <div> {val.title}</div>
-        //                 // </li>
-        //             )
-        //         })
-        //         }
-        //     </ul>
-        // </div>
     )
 }
 export default Sidebar;

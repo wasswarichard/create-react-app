@@ -8,7 +8,8 @@ import Sidebar from "./components/Sidebar/Sidebar";
 const  App = () => (
     <Provider store={store}>
         <Router>
-            <Route path="/" exact component={Sidebar}/>
+            <Route path="/dataTable"  component={DataTable}/>
+            <Route path="/" exact  component={Sidebar}/>
         </Router>
     </Provider>
 );

@@ -1,13 +1,11 @@
 import React, {useState} from 'react';
 
-const TableHeader = () => {
+const TableHeader = ({headers}) => {
+    console.log(headers)
     return (
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th></th>
+                {headers.map(head => (<th key={head.field}>{head.name}</th>))}
             </tr>
         </thead>
     )
