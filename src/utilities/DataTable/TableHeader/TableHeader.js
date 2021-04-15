@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 
 const TableHeader = ({headers}) => {
-    console.log(headers)
     return (
         <thead>
             <tr>

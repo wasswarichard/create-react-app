@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
 
-const TableSearch = () => {
+const TableSearch = ({search}) => {
     return (
         <input
             type="text"
             className="form-control"
-            style={{width: "240px"}}
-            placeholder="Search"
+            style={{width: "150px"}}
+            placeholder={search.name}
         />
     )
 }

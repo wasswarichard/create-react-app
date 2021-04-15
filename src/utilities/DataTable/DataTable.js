@@ -5,10 +5,16 @@ import TableHeader from "./TableHeader/TableHeader";
 import config from "../../Helpers/config.json"
 import useFullPageLoader from "../../hooks/useFullPageLoader/useFullPageLoader";
 // import "../../components/Sidebar/style.css"
+import {UserJoined} from "../../actions/actions";
+import "bootstrap/dist/css/bootstrap.min.css"
+import {v1 as uuid} from "uuid";
+import {useDispatch} from "react-redux";
 
 const DataTable = () => {
     const [members, setMembers] = useState([]);
     const [loader, showLoader, hideLoader] = useFullPageLoader();
+    
+    const dispatch = useDispatch();
     const headers = [
         {name: "crewId", field: "crewId"},
         {name: "id", field: "id"},
@@ -30,6 +36,10 @@ const DataTable = () => {
         getMembers();
     }, []);
     const membersData = useMemo( ()=> {
+        dispatch(UserJoined({
+            id: uuid(),
+            name: members
+        }));
         return members;
 
     }, [members])
@@ -42,16 +52,14 @@ const DataTable = () => {
                             <div className="col-md-6">
                               <TablePagination></TablePagination>
                             </div>
-                            <div className="col-md-6 d-flex flex-row-reverse">
-                               <TableSearch></TableSearch>
-                            </div>
                         </div>
-
-                        <table className="table table-striped">
-                          <TableHeader headers={headers}/>
-                            {/*{headers.map(head => (<TableSearch key={head.field}/>))}*/}
-                          {/*<TableSearch/>*/}
+                        <table  id="dtBasicExample" className="table table-striped table-bordered table-sm" cellSpacing="0" width="100%">
+                            <caption>List of users</caption>
+                            <TableHeader headers={headers}/>
                             <tbody>
+                            <tr>
+                                {headers.map(head => (<td key={head.field} className="th-sm"><TableSearch search={head}/></td>))}
+                            </tr>
                             {membersData.map( member => {
                                 return ( <tr>
                                             <td>{member.crewId}</td>
