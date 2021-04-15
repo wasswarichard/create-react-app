@@ -8,9 +8,12 @@ import useFullPageLoader from "../../hooks/useFullPageLoader/useFullPageLoader";
 import {UserJoined} from "../../actions/actions";
 import "bootstrap/dist/css/bootstrap.min.css"
 import {v1 as uuid} from "uuid";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 const DataTable = () => {
+
+    let todos = useSelector(state => state);
+
     const [members, setMembers] = useState([]);
     const [loader, showLoader, hideLoader] = useFullPageLoader();
     
