@@ -1,8 +1,4 @@
 import React from "react";
-import {Link, NavLink, useLocation} from "react-router-dom";
-import routes from "../../routes/routes";
-import {Scrollbars} from "react-custom-scrollbars";
-// import "bootstrap/dist/css/bootstrap.min.css"
 import profilePicture from "../../images/richard.jpg"
 import 'bootstrap/dist/css/bootstrap.css';
 import "./Navbar.css"

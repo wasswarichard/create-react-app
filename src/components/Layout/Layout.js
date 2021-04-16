@@ -5,7 +5,6 @@ import Navbar from "../Navbar/Navbar";
 import Sidebar from "../Sidebar/Sidebar";
 const Layout =  ({children}) => {
     const isNavbarVisible = true;
-
     useEffect(() => {
         ReactGA.pageview(window.location.pathname + window.location.search);
     });

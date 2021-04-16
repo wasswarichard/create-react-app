@@ -1,7 +1,4 @@
-// import {sidebarData} from "../../components/Sidebar/sidebarData";
 import React from "react";
-import DataTable from "../../utilities/DataTable/DataTable";
-
 const Home = () => {
     return (
         <div className="main-content">
