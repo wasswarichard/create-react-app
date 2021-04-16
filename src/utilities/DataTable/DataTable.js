@@ -47,37 +47,32 @@ const DataTable = () => {
 
     }, [members])
     return (
-        <>
-            {/*<Header title="Building a data table in react">*/}
-                <div className="row w-100">
-                    <div className="col mb-3 col-12 text-center">
-                        <div className="row">
-                            <div className="col-md-6">
-                              <TablePagination></TablePagination>
-                            </div>
-                        </div>
-                        <table  id="dtBasicExample" className="table table-striped table-bordered table-sm" cellSpacing="0" width="100%">
-                            <caption>List of users</caption>
-                            <TableHeader headers={headers}/>
-                            <tbody>
-                            <tr>
-                                {headers.map(head => (<td key={head.field} className="th-sm"><TableSearch search={head}/></td>))}
-                            </tr>
-                            {membersData.map( member => {
-                                return ( <tr>
-                                            <td>{member.crewId}</td>
-                                            <td>{member.id}</td>
-                                            <td>{member.image}</td>
-                                            <td>{member.name}</td>
-                                            <td>{member.userId}</td>
-                                </tr>)
-                            })}
-                            </tbody>
-                        </table>
-                    </div>
+        <div>
+            <div className="row">
+                <div className="col-md-6">
+                    <TablePagination></TablePagination>
                 </div>
+            </div>
+            <table  id="dtBasicExample" className="table table-striped table-bordered table-sm" cellSpacing="0" width="100%">
+                <caption>List of users</caption>
+                <TableHeader headers={headers}/>
+                <tbody>
+                <tr>
+                    {headers.map(head => (<td key={head.field} className="th-sm"><TableSearch search={head}/></td>))}
+                </tr>
+                {membersData.map( member => {
+                    return ( <tr>
+                        <td>{member.crewId}</td>
+                        <td>{member.id}</td>
+                        <td>{member.image}</td>
+                        <td>{member.name}</td>
+                        <td>{member.userId}</td>
+                    </tr>)
+                })}
+                </tbody>
+            </table>
             {loader}
-        </>
+        </div>
     )
 }
 export default DataTable;

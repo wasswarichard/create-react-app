@@ -1,9 +1,14 @@
-import React, {useState} from 'react';
-// import "./Sidebar.css"
-import "./style.css"
-import {sidebarData} from "./sidebarData";
+import React from "react";
+import {Link, useLocation} from "react-router-dom";
+import routes from "../../routes/routes";
+import "./Sidebar.css"
 
 const Sidebar = () => {
+    const isNavbarVisible = true;
+    const location = useLocation();
+    const getNavLinkClass = (path) => {
+        return location.pathname === path ? "active" : "";
+    }
     return (
         <div className="sidebar">
             <div className="sidebar-brand">
@@ -11,13 +16,19 @@ const Sidebar = () => {
             </div>
             <div className="sidebar-menu">
                 <ul>
-                    {sidebarData.map((val, key) => {
-                        return (
-                            <li key={key} onClick={()=> {window.location.pathname = val.link}}>
-                                <a href=""><span className={val.iconClass}></span><span>{val.title}</span></a>
-                            </li>
-                        )
-                    })
+                    {routes
+                        .filter(route => route.navbar !== "")
+                        .map((route, key) => {
+                            return (
+                                <li key={key} className={getNavLinkClass(route.path)}>
+                                    <a href="">
+                                        <Link to={route.path}>
+                                            <span className={route.iconClass}></span><span>{route.title}</span>
+                                        </Link>
+                                    </a>
+                                </li>
+                            )
+                        })
                     }
                 </ul>
             </div>

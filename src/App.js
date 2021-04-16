@@ -1,15 +1,29 @@
-import React from 'react';
-import {BrowserRouter as Router, Route} from 'react-router-dom'
+import React, {Suspense} from 'react';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import {Provider} from "react-redux";
 import store from "./store/store";
-import DataTable from "./utilities/DataTable/DataTable";
-import Sidebar from "./components/Sidebar/Sidebar";
+import routes from "./routes/routes";
+import "./App.css"
+import Home from "./components/Home/Home"
+import Layout from "./components/Layout/Layout";
 
 const  App = () => (
     <Provider store={store}>
         <Router>
-            <Route path="/dataTable"  component={DataTable}/>
-            <Route path="/" exact  component={Sidebar}/>
+           <Layout>
+               <Suspense fallback={<div> Loading...</div>}>
+                   <Switch>
+                       {routes.map((route) => (
+                           <Route
+                               path={route.path}
+                               component={route.component}
+                               key={route.path}
+                           />
+                       ))}
+                       <Route path="/" exact component={Home}/>
+                   </Switch>
+               </Suspense>
+           </Layout>
         </Router>
     </Provider>
 );
